@@ -7,6 +7,11 @@ Tech stack:
 - AI integration: OpenAI API
 - Auth: JWT-based authentication
 
+Secrets and API keys (mandatory):
+- Never hardcode secrets or API keys in code, config files, or documentation.
+- All secrets must come from environment variables (e.g. .env, ConfigService in NestJS).
+- When working on backend secrets or auth, do not modify frontend code.
+
 General engineering principles:
 - Follow clean architecture and separation of concerns.
 - Keep controllers thin and move logic to services.

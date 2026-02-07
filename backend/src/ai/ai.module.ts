@@ -1,9 +1,13 @@
 import { Global, Module } from '@nestjs/common';
-import { AiService } from './ai.service';
+import { AIService } from './ai-service.abstract';
+import { DeepSeekService } from './deepseek.service';
 
 @Global()
 @Module({
-  providers: [AiService],
-  exports: [AiService],
+  providers: [
+    DeepSeekService,
+    { provide: AIService, useClass: DeepSeekService },
+  ],
+  exports: [AIService],
 })
 export class AiModule {}

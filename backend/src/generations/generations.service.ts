@@ -5,14 +5,14 @@ import {
   ServiceUnavailableException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { AiService } from '../ai/ai.service';
+import { AIService } from '../ai/ai-service.abstract';
 import { CreateGenerationDto } from './dto/create-generation.dto';
 
 @Injectable()
 export class GenerationsService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly aiService: AiService,
+    private readonly aiService: AIService,
   ) {}
 
   async create(userId: string, dto: CreateGenerationDto) {

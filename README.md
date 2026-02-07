@@ -8,7 +8,7 @@ A production-ready AI SaaS application that helps developers generate unit tests
 
 Unit Test Generator is an AI-powered SaaS platform that:
 
-- Accepts source code and generates unit tests using AI (OpenAI)
+- Accepts source code and generates unit tests using AI (DeepSeek)
 - Provides a clean, developer-focused web interface
 - Secures access with JWT-based authentication
 - Stores users, generations, and metadata in PostgreSQL
@@ -24,7 +24,7 @@ The system is designed for clarity, maintainability, and scalability, with a cle
 | **Frontend** | React, TypeScript, Vite, Tailwind CSS, React Router, Axios |
 | **Backend**  | NestJS, TypeScript |
 | **Database** | PostgreSQL with Prisma ORM |
-| **AI**       | OpenAI API |
+| **AI**       | DeepSeek API (OpenAI-compatible) |
 | **Auth**     | JWT-based authentication |
 
 ---
@@ -36,7 +36,7 @@ The system is designed for clarity, maintainability, and scalability, with a cle
 - **Node.js** (LTS, e.g. 18 or 20)
 - **npm** (or pnpm / yarn)
 - **PostgreSQL** (running locally or a hosted instance)
-- **OpenAI API key** (for test generation)
+- **DeepSeek API key** (for test generation)
 
 ### Environment Variables
 
@@ -47,8 +47,9 @@ The system is designed for clarity, maintainability, and scalability, with a cle
 | `JWT_EXPIRES_IN` | Backend | No | JWT expiry, default `7d` |
 | `PORT` | Backend | No | API port, default `3000` |
 | `CORS_ORIGIN` | Backend | No | Allowed frontend origin, e.g. `http://localhost:5173` |
-| `OPENAI_API_KEY` | Backend | Yes for generation | OpenAI API key for generating tests |
-| `OPENAI_MODEL` | Backend | No | Model name, default `gpt-4o-mini` |
+| `AI_PROVIDER` | Backend | Yes | Set to `deepseek` (only supported provider) |
+| `DEEPSEEK_API_KEY` | Backend | Yes for generation | DeepSeek API key for generating tests |
+| `DEEPSEEK_MODEL` | Backend | No | Model name, default `deepseek-coder` |
 | `VITE_API_URL` | Frontend | No | Backend URL; if unset, dev uses `/api` (proxied to backend) |
 
 ### Backend
@@ -57,7 +58,7 @@ The system is designed for clarity, maintainability, and scalability, with a cle
 cd backend
 npm install
 cp .env.example .env
-# Edit .env and set DATABASE_URL, JWT_SECRET, OPENAI_API_KEY (and optionally PORT, CORS_ORIGIN, OPENAI_MODEL)
+# Edit .env and set DATABASE_URL, JWT_SECRET, DEEPSEEK_API_KEY (and optionally PORT, CORS_ORIGIN, DEEPSEEK_MODEL)
 npx prisma migrate deploy
 npm run start:dev
 ```

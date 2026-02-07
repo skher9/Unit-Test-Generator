@@ -34,7 +34,8 @@ backend/
 │   │   └── dto/               # create-generation.dto
 │   └── ai/
 │       ├── ai.module.ts
-│       └── ai.service.ts       # OpenAI test generation (optional)
+│       ├── ai-service.abstract.ts
+│       └── deepseek.service.ts # DeepSeek test generation
 ├── .env.example
 ├── package.json
 ├── tsconfig.json
@@ -60,7 +61,7 @@ Edit `.env` and set at least:
 
 - `DATABASE_URL` – e.g. `postgresql://USER:PASSWORD@localhost:5432/unit_test_generator?schema=public`
 - `JWT_SECRET` – strong secret for signing JWTs
-- Optionally `OPENAI_API_KEY` and `OPENAI_MODEL` for AI test generation
+- `AI_PROVIDER=deepseek` and `DEEPSEEK_API_KEY` for AI test generation (optionally `DEEPSEEK_MODEL`)
 
 ### 3. Install and database
 
