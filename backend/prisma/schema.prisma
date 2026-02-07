@@ -1,0 +1,37 @@
+// Prisma schema for Unit Test Generator
+// https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  passwordHash String       @map("password_hash")
+  name         String?
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+  generations  Generation[]
+
+  @@map("users")
+}
+
+model Generation {
+  id              String   @id @default(uuid())
+  userId          String   @map("user_id")
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  inputCode       String   @map("input_code") @db.Text
+  language        String   @default("typescript") @db.VarChar(64)
+  generatedTests  String?  @map("generated_tests") @db.Text
+  status          String   @default("pending") // pending | completed | failed
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("generations")
+}

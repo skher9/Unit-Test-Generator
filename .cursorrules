@@ -1,0 +1,62 @@
+You are assisting in building a production-quality AI SaaS web application.
+
+Tech stack:
+- Frontend: React + TypeScript + Vite + Tailwind
+- Backend: NestJS + TypeScript
+- Database: PostgreSQL with Prisma ORM
+- AI integration: OpenAI API
+- Auth: JWT-based authentication
+
+General engineering principles:
+- Follow clean architecture and separation of concerns.
+- Keep controllers thin and move logic to services.
+- Never place business logic in React components or NestJS controllers.
+- Use environment variables for all secrets and configuration.
+- Write clear, maintainable, and strongly typed TypeScript code.
+- Avoid unnecessary complexity or over-engineering.
+- Prefer readability and correctness over cleverness.
+
+Backend rules (NestJS):
+- Use proper module structure: auth, users, generations, ai, prisma.
+- Use DTOs with validation for all request bodies.
+- Use guards for authentication and route protection.
+- Hash passwords securely using bcrypt.
+- Never expose sensitive fields like passwordHash in responses.
+- All database access must go through PrismaService.
+- AI calls must be isolated inside an ai service, never directly in controllers.
+- Add basic error handling and meaningful HTTP status codes.
+
+Database rules (Prisma/Postgres):
+- Use UUIDs for primary keys.
+- Define relations explicitly.
+- Use migrations for every schema change.
+- Never write raw SQL unless absolutely necessary.
+- Keep schema minimal and clear for MVP.
+
+Frontend rules (React):
+- Use functional components with hooks and TypeScript.
+- Create a small API service layer for HTTP calls.
+- Store JWT securely and attach it to requests.
+- Handle loading, error, and empty states properly.
+- Keep UI clean, minimal, and developer-focused.
+- Do not place business logic in UI components.
+
+AI integration rules:
+- AI must only be called from backend services.
+- Prompts must be deterministic and concise.
+- Never expose API keys to the frontend.
+- Log failures and handle API errors gracefully.
+- Limit input size and prepare for rate limiting and cost control.
+
+Code generation behavior:
+- Generate complete, working code — not pseudo-code.
+- When modifying files, preserve existing architecture.
+- Explain major design decisions briefly after code generation.
+- Prefer incremental improvements over large rewrites.
+
+When requirements are unclear:
+- Ask concise clarification questions before generating code.
+- Do not assume hidden requirements.
+
+Goal:
+Produce clean, understandable, production-ready code suitable for a real SaaS portfolio project.
